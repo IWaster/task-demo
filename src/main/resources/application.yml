@@ -1,0 +1,35 @@
+server:
+  port: 8190
+spring:
+  mvc:
+    static-path-pattern: /static/**
+
+
+  #模板引擎配置
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
+    settings:
+      template_update_delay: 0
+      classic_compatible: true
+      number_format: 0.######
+      template_exception_handler: ignore
+    request-context-attribute: rc
+    charset: UTF-8
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:xxx}:${DATASOURCE_PORT:3306}/task?characterEncoding=UTF-8&useUnicode=true&useSSL=false&allowMultiQueries=true
+    username: ${DATASOURCE_USERNAME:xx}
+    password: ${DATASOURCE_PASSWORD:xxx}
+
+mybatis:
+  type-aliases-package: club.ouka.task.mapper
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+task.msg.scanpackage: club.ouka.task.task
+
+admin:
+  backstage:
+    ip: 223.72.61.42,117.136.79.159
+    #124.65.249.102,223.72.61.42,61.148.245.96

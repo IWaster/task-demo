@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.ouka.task.mapper.SysJobMapper">
+    <resultMap id="BaseResultMap" type="club.ouka.task.entity.SysJob">
+        <!--@mbg.generated-->
+        <!--@Table sys_job-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="job_name" jdbcType="VARCHAR" property="jobName"/>
+        <result column="job_group" jdbcType="VARCHAR" property="jobGroup"/>
+        <result column="job_cron" jdbcType="VARCHAR" property="jobCron"/>
+        <result column="job_class_path" jdbcType="VARCHAR" property="jobClassPath"/>
+        <result column="job_data_map" jdbcType="VARCHAR" property="jobDataMap"/>
+        <result column="job_status" jdbcType="INTEGER" property="jobStatus"/>
+        <result column="job_describe" jdbcType="VARCHAR" property="jobDescribe"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, job_name, job_group, job_cron, job_class_path, job_data_map, job_status, job_describe
+    </sql>
+
+    <!-- 查询定时任务列表 -->
+    <select id="querySysJobList" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_job where 1=1
+        <if test="id != null">
+            and ID = #{id,jdbcType=INTEGER}
+        </if>
+        <if test="jobDescribe != null">
+            and JOB_DESCRIBE = #{jobDescribe,jdbcType=VARCHAR}
+        </if>
+        <if test="jobClassPath != null">
+            and job_class_path = #{jobClassPath,jdbcType=VARCHAR}
+        </if>
+        <if test="jobStatus != null">
+            and job_status = #{jobStatus,jdbcType=VARCHAR}
+        </if>
+        <if test="jobCron != null">
+            and job_cron like concat('%',#{jobCron},'%')
+        </if>
+        <if test="jobGroup != null">
+            and job_group = #{jobGroup,jdbcType=VARCHAR}
+        </if>
+        <if test="jobName != null">
+            and job_name like concat('%',#{jobName},'%')
+        </if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from sys_job
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="club.ouka.task.entity.SysJob"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sys_job (job_name, job_group, job_cron,
+        job_class_path, job_data_map, job_status,
+        job_describe)
+        values (#{jobName,jdbcType=VARCHAR}, #{jobGroup,jdbcType=VARCHAR}, #{jobCron,jdbcType=VARCHAR},
+        #{jobClassPath,jdbcType=VARCHAR}, #{jobDataMap,jdbcType=VARCHAR}, #{jobStatus,jdbcType=INTEGER},
+        #{jobDescribe,jdbcType=VARCHAR})
+    </insert>
+
+    <!--  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="club.ouka.task.entity.SysJob" useGeneratedKeys="true">-->
+    <!--    &lt;!&ndash;@mbg.generated&ndash;&gt;-->
+    <!--    insert into sys_job-->
+    <!--    <trim prefix="(" suffix=")" suffixOverrides=",">-->
+    <!--      <if test="jobName != null">-->
+    <!--        job_name,-->
+    <!--      </if>-->
+    <!--      <if test="jobGroup != null">-->
+    <!--        job_group,-->
+    <!--      </if>-->
+    <!--      <if test="jobCron != null">-->
+    <!--        job_cron,-->
+    <!--      </if>-->
+    <!--      <if test="jobClassPath != null">-->
+    <!--        job_class_path,-->
+    <!--      </if>-->
+    <!--      <if test="jobDataMap != null">-->
+    <!--        job_data_map,-->
+    <!--      </if>-->
+    <!--      <if test="jobStatus != null">-->
+    <!--        job_status,-->
+    <!--      </if>-->
+    <!--      <if test="jobDescribe != null">-->
+    <!--        job_describe,-->
+    <!--      </if>-->
+    <!--    </trim>-->
+    <!--    <trim prefix="values (" suffix=")" suffixOverrides=",">-->
+    <!--      <if test="jobName != null">-->
+    <!--        #{jobName,jdbcType=VARCHAR},-->
+    <!--      </if>-->
+    <!--      <if test="jobGroup != null">-->
+    <!--        #{jobGroup,jdbcType=VARCHAR},-->
+    <!--      </if>-->
+    <!--      <if test="jobCron != null">-->
+    <!--        #{jobCron,jdbcType=VARCHAR},-->
+    <!--      </if>-->
+    <!--      <if test="jobClassPath != null">-->
+    <!--        #{jobClassPath,jdbcType=VARCHAR},-->
+    <!--      </if>-->
+    <!--      <if test="jobDataMap != null">-->
+    <!--        #{jobDataMap,jdbcType=VARCHAR},-->
+    <!--      </if>-->
+    <!--      <if test="jobStatus != null">-->
+    <!--        #{jobStatus,jdbcType=INTEGER},-->
+    <!--      </if>-->
+    <!--      <if test="jobDescribe != null">-->
+    <!--        #{jobDescribe,jdbcType=VARCHAR},-->
+    <!--      </if>-->
+    <!--    </trim>-->
+    <!--  </insert>-->
+    <update id="updateByPrimaryKeySelective" parameterType="club.ouka.task.entity.SysJob">
+        <!--@mbg.generated-->
+        update sys_job
+        <set>
+            <if test="jobName != null">
+                job_name = #{jobName,jdbcType=VARCHAR},
+            </if>
+            <if test="jobGroup != null">
+                job_group = #{jobGroup,jdbcType=VARCHAR},
+            </if>
+            <if test="jobCron != null">
+                job_cron = #{jobCron,jdbcType=VARCHAR},
+            </if>
+            <if test="jobClassPath != null">
+                job_class_path = #{jobClassPath,jdbcType=VARCHAR},
+            </if>
+            <if test="jobDataMap != null">
+                job_data_map = #{jobDataMap,jdbcType=VARCHAR},
+            </if>
+            <if test="jobStatus != null">
+                job_status = #{jobStatus,jdbcType=INTEGER},
+            </if>
+            <if test="jobDescribe != null">
+                job_describe = #{jobDescribe,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="club.ouka.task.entity.SysJob">
+        <!--@mbg.generated-->
+        update sys_job
+        set job_name = #{jobName,jdbcType=VARCHAR},
+        job_group = #{jobGroup,jdbcType=VARCHAR},
+        job_cron = #{jobCron,jdbcType=VARCHAR},
+        job_class_path = #{jobClassPath,jdbcType=VARCHAR},
+        job_data_map = #{jobDataMap,jdbcType=VARCHAR},
+        job_status = #{jobStatus,jdbcType=INTEGER},
+        job_describe = #{jobDescribe,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="clearQuqrtzMsg" statementType="PREPARED">
+    begin;
+    DELETE FROM task.QRTZ_BLOB_TRIGGERS where 1=1;
+    DELETE FROM task.QRTZ_CALENDARS  where 1=1;
+    DELETE FROM task.QRTZ_CRON_TRIGGERS  where 1=1;
+    DELETE FROM task.QRTZ_FIRED_TRIGGERS  where 1=1;
+    DELETE FROM task.QRTZ_LOCKS  where 1=1;
+    DELETE FROM task.QRTZ_PAUSED_TRIGGER_GRPS  where 1=1;
+    DELETE FROM task.QRTZ_SCHEDULER_STATE   where 1=1;
+    DELETE FROM task.QRTZ_SIMPLE_TRIGGERS  where 1=1;
+    DELETE FROM task.QRTZ_SIMPROP_TRIGGERS  where 1=1;
+    DELETE FROM task.QRTZ_TRIGGERS  where 1=1;
+    DELETE FROM task.QRTZ_JOB_DETAILS  where 1=1;
+    delete from task.sys_job where 1=1;
+    commit;
+  </delete>
+
+
+
+  <insert id="insertSysJobByList" parameterType="java.util.List">
+    insert into task.sys_job (id,job_name, job_group, job_cron,
+        job_class_path, job_data_map, job_status,
+        job_describe)
+        values
+        <foreach collection="list" item="sysJob" index="ind" close="" open="" separator=",">
+            (#{sysJob.id,jdbcType=INTEGER},#{sysJob.jobName,jdbcType=VARCHAR,jdbcType=VARCHAR}, #{sysJob.jobGroup,jdbcType=VARCHAR,jdbcType=VARCHAR}, #{sysJob.jobCron,jdbcType=VARCHAR,jdbcType=VARCHAR},
+            #{sysJob.jobClassPath,jdbcType=VARCHAR,jdbcType=VARCHAR}, #{sysJob.jobDataMap,jdbcType=VARCHAR,jdbcType=VARCHAR}, #{sysJob.jobStatus,jdbcType=INTEGER,jdbcType=INTEGER},
+            #{sysJob.jobDescribe,jdbcType=VARCHAR,jdbcType=VARCHAR})
+        </foreach>
+  </insert>
+
+  <select id="selectJobById" parameterType="integer" resultMap="BaseResultMap">
+      SELECT
+      <include refid="Base_Column_List"></include>
+      FROM task.sys_job
+      WHERE id=#{id,jdbcType=INTEGER}
+  </select>
+
+    <select id="selectJob" parameterType="integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM task.sys_job
+        <where>
+            <if test="jobName != null and jobName != ''">
+                job_name=#{jobName,jdbcType=VARCHAR}
+            </if>
+            <if test="jobGroup != null and jobGroup != ''">
+                AND job_group=#{jobGroup,jdbcType=VARCHAR}
+            </if>
+            <if test="jobClassPath != null and jobClassPath != ''">
+                AND job_class_path = #{jobClassPath,jdbcType=VARCHAR}
+            </if>
+            <if test="jobCron != null and jobCron != ''">
+                AND job_cron = #{jobCron,jdbcType=VARCHAR}
+            </if>
+            <if test="jobDescribe != null and jobDescribe != ''">
+                AND job_describe=#{jobDescribe,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>
