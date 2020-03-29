@@ -119,8 +119,18 @@ public class TaskServiceImpl implements TaskService {
         if (null==sysJob) {
             throw new TaskException("500","没有id为"+id+"的定时任务");
         }
+        if (sysJob.getJobStatus()==-1) {
+            throw new TaskException("500","禁止修改开发中的任务,id:"+sysJob.getId());
+        }
         SysJob updateBean = SysJob.builder().id(id).jobCron(cron).build();
         int i = sysJobMapper.updateByPrimaryKeySelective(updateBean);
+        if (sysJob.getJobStatus()==0){
+            try {
+                SchedulerUtil.jobReschedule(sysJob.getJobName(), sysJob.getJobGroup(),cron);
+            } catch (Exception e) {
+                throw new TaskException("500","任务更新失败,id:"+id);
+            }
+        }
         return i;
     }
 

@@ -1,6 +1,5 @@
 package club.ouka.task.api;
 
-import club.ouka.task.Util.IpUtil;
 import club.ouka.task.Util.R;
 import club.ouka.task.annotation.CheckIpAddr;
 import club.ouka.task.entity.SysJob;
@@ -13,7 +12,6 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,10 +32,6 @@ public class TaskApi {
     public String industry(HttpServletRequest request) {
         return "JobManager";
     }
-
-    @ResponseBody
-    @RequestMapping("ip")
-    public String test(HttpServletRequest request){return IpUtil.getIpAddr(request);}
 
     /**
      * 定时任务列表
@@ -90,7 +84,7 @@ public class TaskApi {
     public R updateJob(HttpServletRequest request,@RequestParam("id")String id,
                        @RequestParam("cron")String cron){
         Assert.hasLength(id,"id不能为空");
-        Assert.isNull(cron,"cron表达式不能为空");
+        Assert.notNull(cron,"cron表达式不能为空");
         int i = taskService.updateTask(Integer.parseInt(id), cron);
         return i==0? R.ok("更新失败"):R.error("更新成功");
     }
