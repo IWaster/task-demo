@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>ouka任务调度</title>
+    <title>404</title>
     <link rel="shortcut icon" href="/static/icon.jpg" type="image/x-icon"></link>
     <link rel="stylesheet" href="https://unpkg.com/element-ui@2.0.5/lib/theme-chalk/index.css">
     <script src="https://unpkg.com/vue/dist/vue.js"></script>

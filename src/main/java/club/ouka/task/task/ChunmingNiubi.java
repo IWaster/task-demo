@@ -21,7 +21,7 @@ import java.util.Date;
         jobCorn = "0/3 * * * * ?",
         jobClassPath = "club.ouka.task.task.ChunmingNiubi",
         jobDescribe = "test2",
-        jobStatus = 0)
+        jobStatus = 1)
 public class ChunmingNiubi implements BaseJob {
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {

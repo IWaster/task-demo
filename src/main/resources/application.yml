@@ -19,9 +19,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:xxx}:${DATASOURCE_PORT:3306}/task?characterEncoding=UTF-8&useUnicode=true&useSSL=false&allowMultiQueries=true
-    username: ${DATASOURCE_USERNAME:xx}
-    password: ${DATASOURCE_PASSWORD:xxx}
+    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:192.168.206.139}:${DATASOURCE_PORT:3306}/task?characterEncoding=UTF-8&useUnicode=true&useSSL=false&allowMultiQueries=true
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:qishimeiyoumima}
 
 mybatis:
   type-aliases-package: club.ouka.task.mapper
@@ -31,5 +31,5 @@ task.msg.scanpackage: club.ouka.task.task
 
 admin:
   backstage:
-    ip: 223.72.61.42,117.136.79.159
+    ip: 223.72.61.42,115.35.220.118,10.0.75.1
     #124.65.249.102,223.72.61.42,61.148.245.96

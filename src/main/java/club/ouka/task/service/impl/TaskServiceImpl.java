@@ -143,7 +143,7 @@ public class TaskServiceImpl implements TaskService {
     @Transactional(rollbackFor = Exception.class)
     public int addJob(SysJob sysJob) {
         SysJob job = sysJobMapper.selectJob(sysJob);
-        if (null==sysJob) {
+        if (null==job) {
             throw new TaskException("500","定时任务信息错误请核对");
         }
         if (job.getJobStatus()==-1) {
@@ -152,8 +152,8 @@ public class TaskServiceImpl implements TaskService {
         if (job.getJobStatus()==0) {
             throw new TaskException("500","任务已经执行,请勿重复添加");
         }
-        sysJob.setId(0);
-        int insert = sysJobMapper.insert(sysJob);
+        sysJob.setJobStatus(0);
+        int insert = sysJobMapper.updateByPrimaryKeySelective(sysJob);
         try {
             SchedulerUtil.addJob(sysJob.getJobClassPath(),sysJob.getJobName(),sysJob.getJobGroup(),sysJob.getJobCron(),sysJob.getJobDataMap());
         } catch (Exception e) {
