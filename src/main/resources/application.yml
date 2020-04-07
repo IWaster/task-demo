@@ -27,7 +27,7 @@ mybatis:
   type-aliases-package: club.ouka.task.mapper
   mapper-locations: classpath:mapper/*Mapper.xml
 
-task.msg.scanpackage: club.ouka.task.task
+scanpackage: club.ouka.task.task
 
 admin:
   backstage:
