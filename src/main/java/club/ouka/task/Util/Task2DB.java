@@ -22,7 +22,7 @@ public class Task2DB {
     /**
      * 扫描关键词
      */
-    private static  final String SCAN_PACKAGE="task.msg.scanpackage";
+    private static  final String SCAN_PACKAGE="scanpackage";
     private Properties config = new Properties();
     private List<Class<?extends BaseJob>> classList = new ArrayList<>();
 
